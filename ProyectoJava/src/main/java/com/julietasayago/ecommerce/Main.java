@@ -12,53 +12,43 @@ public class Main {
         ArrayList<Pedido> pedidos = new ArrayList<>();
 
         Scanner entrada = new Scanner(System.in);
-        int opcionUsuario;
+        int opcionUsuario = 0;
 
         do {
             System.out.println("\n=======================================");
             System.out.println("        MENÚ PRINCIPAL - ECOMMERCE     ");
             System.out.println("=======================================");
             System.out.println("""
-                    1) Agregar producto
-                    2) Listar productos
-                    3) Buscar producto
-                    4) Eliminar producto
-                    5) Crear un pedido
-                    6) Listar pedidos
-                    7) Salir
-                    """);
+            1) Agregar producto
+            2) Listar productos
+            3) Buscar producto
+            4) Eliminar producto
+            5) Crear un pedido
+            6) Listar pedidos
+            7) Salir
+            """);
             System.out.println("---------------------------------------");
             System.out.print("👉 Elija una opción: ");
 
-            opcionUsuario = entrada.nextInt();
+            try {
+                opcionUsuario = entrada.nextInt();
 
-
-            switch (opcionUsuario) {
-                case 1:
-                    agregarProductos(productos);
-                    break;
-                case 2:
-                    listarProductos(productos);
-                    break;
-                case 3:
-                    buscarProducto(productos);
-                    break;
-                case 4:
-                    eliminarProducto(productos);
-                    break;
-                case 5:
-                    crearPedido();
-                    break;
-                case 6:
-                    listarPedido();
-                    break;
-                case 7:
-                    System.out.println("🙏 Gracias por usar la app! 👋");
-                    break;
-                default:
-                    System.out.println("🚫 Oops, opción incorrecta!");
+                switch (opcionUsuario) {
+                    case 1 -> agregarProductos(productos);
+                    case 2 -> listarProductos(productos);
+                    case 3 -> buscarProducto(productos);
+                    case 4 -> eliminarProducto(productos);
+                    case 5 -> crearPedido();
+                    case 6 -> listarPedido();
+                    case 7 -> System.out.println("🙏 Gracias por usar la app! 👋");
+                    default -> System.out.println("🚫 Oops, opción incorrecta!");
+                }
+            } catch (Exception e) {
+                System.out.println("⚠️ Error: Entrada inválida. Por favor, ingrese un número válido.");
+                entrada.nextLine();
             }
         } while (opcionUsuario != 7);
+
     }
 
     public static void agregarProductos(ArrayList<Producto> productos) {
